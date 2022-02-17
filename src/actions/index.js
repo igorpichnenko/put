@@ -12,6 +12,7 @@ export const putData = (query) => {
     })
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
+          localStorage.setItem('response', `respone : ${JSON.stringify(res)}`);
           return res;
         } else {
           console.log('Запрос', 'response:', res);
