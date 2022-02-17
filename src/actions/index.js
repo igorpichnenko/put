@@ -7,7 +7,7 @@ export const putData = (query) => {
   return (dispatch) => {
     fetch(URL, {
       method: 'PUT',
-      body: JSON.stringify(query),
+      body: JSON.parse(JSON.stringify(query)),
       headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => {
