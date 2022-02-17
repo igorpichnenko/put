@@ -3,10 +3,10 @@ import actionType from '../actionType';
 const URL = 'https://httpbin.org/#/HTTP_Methods/put_put';
 
 export const putData = (query) => {
+
   return (dispatch) => {
     fetch(URL, {
       method: 'PUT',
-
       body: JSON.stringify(query),
       headers: { 'Content-Type': 'application/json' },
     })
