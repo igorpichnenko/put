@@ -2,8 +2,21 @@ import actionType from '../actionType';
 
 const URL = 'https://httpbin.org/#/HTTP_Methods/put_put';
 
-export const putData = (query) => {
+export const fetchDataSuccess = (payload) => {
+  return {
+    type: actionType.FETCH_DATA_SUCCESS,
+    payload,
+  };
+};
 
+export const fetchDataFailed = (error) => {
+  return {
+    type: actionType.FETCH_DATA_FAILED,
+    payload: error,
+  };
+};
+
+export const putData = (query) => {
   return (dispatch) => {
     fetch(URL, {
       method: 'PUT',
@@ -32,11 +45,11 @@ export const putData = (query) => {
         return res.json();
       })
       .then((res) => {
-        dispatch({ type: actionType.FETCH_DATA_SUCCESS, data: res.data });
+        dispatch(fetchDataSuccess(res.data));
       })
       .catch((error) => {
         console.log('Ошибка:', error);
-        dispatch({ type: actionType.FETCH_DATA_FAILED, error });
+        dispatch(fetchDataFailed(error));
       });
 
     localStorage.setItem(
